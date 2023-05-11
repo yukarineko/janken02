@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/question.css">
+    <title>AかBか選ぶ</title>
+    <style>
+        /* メインコンテンツの縦幅を固定するスタイル */
+        main {
+            max-height: 700px;
+            /* メインコンテンツの最大縦幅 */
+            overflow-y: auto;
+            /* コンテンツがはみ出た場合にスクロールバーを表示 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>あなたにピッタリの学年は？</h1>
+    </header>
+
+    <main>
+        <h2 id="question1">小さい子は好き？</h2>
+        <ul>
+            <li>
+                <button id="A_btn">好き<img src="img/yeschild.jpeg"></button>
+                <button id="B_btn">苦手<img src="img/nochild.jpg"></button>
+            </li>
+        </ul>
+        <h2 id="question2" style="display:none">植物を育てる派？生き物を飼う派？</h2>
+        <ul id="question2_choices" style="display:none">
+            <li>
+                <button id="C_btn">植物を育てる<img src="img/plants.png"></button>
+                <button id="D_btn">生き物を飼う<img src="img/pet.png"></button>
+            </li>
+        </ul>
+        <h2 id="question3" style="display:none">女の子のドロドロについてどう思う？</h2>
+        <ul id="question3_choices" style="display:none">
+            <li>
+                <button id="E_btn">理解できるよー！<img src="img/yesgirls.jpg"></button>
+                <button id="F_btn">苦手ーーー！<img src="img/girlsfight.jpg"></button>
+            </li>
+        </ul>
+        <h2 id="question4" style="display:none">トイレは近い？遠い？</h2>
+        <ul id="question4_choices" style="display:none">
+            <li>
+                <button id="G_btn">１日行かなくても大丈夫！<img src="img/yestoilet.png"></button>
+                <button id="H_btn">超頻尿です！<img src="img/nottoilet.ppg.jpg"></button>
+            </li>
+        </ul>
+        <h2 id="question5" style="display:none">１度にいろんなことをこなせる？</h2>
+        <ul id="question5_choices" style="display:none">
+            <li>
+                <button id="I_btn">得意！こなせる！<img src="img/good.png"></button>
+                <button id="J_btn">不得意！慌てちゃう！<img src="img/not.png"></button>
+            </li>
+        </ul>
+
+        <h2 id="question6" style="display:none">歴史は好き？</h2>
+        <ul id="question6_choices" style="display:none">
+            <li>
+                <button id="K_btn">めちゃ好き！歴男だぜ！歴女よ！<img src="img/yeshistory.png"></button>
+                <button id="L_btn">詳しくなくても生きていける～！<img src="img/nohistory.png"></button>
+            </li>
+        </ul>
+        <h2 id="question7" style="display:none">英語は得意？</h2>
+        <ul id="question7_choices" style="display:none">
+            <li>
+                <button id="M_btn">得意！日常会話くらいなら！<img src="img/yesenglish.png"></button>
+                <button id="N_btn">ワタシワカリマセーン<img src="img/noenglish.png"></button>
+            </li>
+        </ul>
+
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        yukari.neko2<img src="img/IMG_0847.jpg" id="my-image">
+    </footer>
+
+    <style>
+        #my-image {
+            width: 5%;
+            height: auto;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        /////////////////////////////////////////////////
+
+        /**********質問２*質問３の非表示と質問**************/
+
+        /////////////////////////////////////////////////     
+
+        $(document).ready(function () {
+            // question2とquestion3を非表示にする
+            $("#question2").hide();
+            $("#question2_choices").hide();
+            $("#question3").hide();
+            $("#question3_choices").hide();
+            // Aをクリックするとquestion2とその選択肢を表示する
+            //【question2】植物派？（ｃボタン）生き物派？（ｄボタン）
+            $("#A_btn").on("click", function () {
+                $("#question1").hide();
+                $("#A_btn").hide();
+                $("#B_btn").hide();
+                $("#question2").show();
+                $("#question2_choices").show();
+                // ヘッダーを非表示にする
+                $('header').hide();
+            });
+
+            // Bをクリックするとquestion3とその選択肢を表示する
+            //【question3】女の子理解できる（Ｅボタン）苦手（Ｆボタン）
+            $("#B_btn").on("click", function () {
+                $("#question1").hide();
+                $("#A_btn").hide();
+                $("#B_btn").hide();
+                $("#question3").show();
+                $("#question3_choices").show();
+                // ヘッダーを非表示にする
+                $('header').hide();
+            });
+        });
+
+        /////////////////////////////////////////////////
+
+        /*****************質問４*質問５の非表示******************/
+
+        /////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            // question4とqestion5を非表示にする
+            $("#question4").hide();
+            $("#question4_choices").hide();
+            $("#question5").hide();
+            $("#question5_choices").hide();
+
+            /////////////////////////////////////////////////
+
+            /********************質問４********************/
+
+            /////////////////////////////////////////////////
+
+
+            // Cをクリックするとquestion4とその選択肢を表示する
+            //【question4】トイレは近い？（Ｇボタン）頻尿（Ｈボタン）遠い
+            $("#C_btn").on("click", function () {
+                $("#question2").hide();
+                $("#C_btn").hide();
+                $("#D_btn").hide();
+                $("#question4").show();
+                $("#question4_choices").show();
+            });
+
+            /////////////////////////////////////////////////
+
+            /*****************質問４の答え******************/
+
+            /////////////////////////////////////////////////
+
+            $("#G_btn").on("click", function () {
+                //Gボタンを押したら１年生とでる
+                // Gボタンを押したら「１年生」と結果が表示される
+                $("#result").text("１年生");
+                // Q4とGボタンとHボタンを非表示にする
+                $("#question4").hide();
+                $("#question4_choices").hide();
+                $("#G_btn").hide();
+                $("#G_btn_choices").hide();
+                $("#H_btn").hide();
+                $("#H_btn_choices").hide();
+                //１年生の画像を出す//
+                //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schoolone.jpg' width='600' height='400'></button><br>あなたには１年生がピッタリかも！？</div>");
+                $("#result").html("<div><span style='color: red;'>あなたには１年生がピッタリかも！？</span><br><button><img src='img/schoolone.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>");
+                // 写真をクリックしたら画像１（低学年）がでてくる
+                $("#result").on("click", "button", function () {
+                    // 低学年の画像を表示する
+                    $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/low.png' width='800' height='450'></button><br></div>");
+                    // 低学年の画像をクリックしたら最後の画像が出てくる
+                    $("#result").on("click", "button", function () {
+                        // 最後の画像を表示する
+                        //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                        $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+
+                    });
+                });
+            });
+        });
+
+
+        $("#H_btn").on("click", function () {
+            //Hボタンを押したら２年生とでる
+            //Hボタンを押したら「２年生」と結果が表示される
+            $("#result").text("２年生");
+            // Q4とGボタンとHボタンを非表示にする
+            $("#question4").hide();
+            $("#question4_choices").hide();
+            $("#G_btn").hide();
+            $("#G_btn_choices").hide();
+            $("#H_btn").hide();
+            $("#H_btn_choices").hide();
+            //２年生の画像を出す//
+            $("#result").html("<div><span style='color: red;'>あなたには２年生がピッタリかも！？</span><br><button><img src='img/schooltwo.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>")
+            // 写真をクリックしたら画像１（低学年）がでてくる
+            $("#result").on("click", "button", function () {
+                // 低学年の画像を表示する
+                $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/low.png' width='800' height='450'></button><br></div>");
+                // 低学年の画像をクリックしたら最後の画像が出てくる
+                $("#result").on("click", "button", function () {
+                    // 最後の画像を表示する
+                    //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                });
+            });
+        });
+
+        /////////////////////////////////////////////////
+
+        /********************質問5********************/
+
+        /////////////////////////////////////////////////
+
+        // Dをクリックするとquestion5とその選択肢を表示する
+        //【question5】１度に色んな事？（Ｉボタン）得意（Ｊボタン）不得意
+        $("#D_btn").on("click", function () {
+            $("#question2").hide();
+            $("#C_btn").hide();
+            $("#D_btn").hide();
+            $("#question5").show();
+            $("#question5_choices").show();
+        });
+
+        /////////////////////////////////////////////////
+
+        /*****************質問５の答え******************/
+
+        /////////////////////////////////////////////////
+
+        $("#I_btn").on("click", function () {
+            //Iボタンを押したら３年生とでる
+            //Iボタンを押したら「３年生」と結果が表示される
+            $("#result").text("３年生");
+            // Q5とIボタンとJボタンを非表示にする
+            $("#question5").hide();
+            $("#question5_choices").hide();
+            $("#I_btn").hide();
+            $("#I_btn_choices").hide();
+            $("#J_btn").hide();
+            $("#J_btn_choices").hide();
+            $("#result").html("<img src='img/schoolthree.jpg' width='600' height='400'><br>３年生");
+            //３年生の画像を出す//
+            //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schoolthree.jpg' width='600' height='400'></button><br>３年生</div>");
+            $("#result").html("<div><span style='color: red;'>あなたには３年生がピッタリかも！？</span><br><button><img src='img/schoolthree.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>")
+            // 写真をクリックしたら画像（中学年）がでてくる
+            $("#result").on("click", "button", function () {
+                // 中学年の画像を表示する
+                $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/medium.png' width='800' height='450'></button><br></div>");
+                // 中学年の画像をクリックしたら最後の画像が出てくる
+                $("#result").on("click", "button", function () {
+                    // 最後の画像を表示する
+                    //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                });
+            });
+        });
+
+        $("#J_btn").on("click", function () {
+            //Jボタンを押したら２年生とでる
+            //Jボタンを押したら「２年生」と結果が表示される
+            $("#result").text("２年生");
+            // Q5とIボタンとJボタンを非表示にする
+            $("#question5").hide();
+            $("#question5_choices").hide();
+            $("#I_btn").hide();
+            $("#I_btn_choices").hide();
+            $("#J_btn").hide();
+            $("#J_btn_choices").hide();
+            $("#result").html("<img src='img/schooltwo.jpg' width='400' height='400'><br>２年生");
+            //２年生の画像を出す//
+            //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schooltwo.jpg' width='600' height='400'></button><br>２年生</div>");
+            $("#result").html("<div><span style='color: red;'>あなたには２年生がピッタリかも！？</span><br><button><img src='img/schooltwo.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>");
+            // 写真をクリックしたら画像１（低学年）がでてくる
+            $("#result").on("click", "button", function () {
+                // 低学年の画像を表示する
+                $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/low.png' width='800' height='450'></button><br></div>");
+                // 低学年の画像をクリックしたら最後の画像が出てくる
+                $("#result").on("click", "button", function () {
+                    // 最後の画像を表示する
+                    //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                });
+            });
+        });
+
+        /////////////////////////////////////////////////
+
+        /***************質問６*質問７の非表示**************/
+
+        /////////////////////////////////////////////////
+
+        $(document).ready(function () {
+            // question6とqestion7を非表示にする
+            $("#question6").hide();
+            $("#question6_choices").hide();
+            $("#question7").hide();
+            $("#question7_choices").hide();
+
+            /////////////////////////////////////////////////
+
+            /********************質問６********************/
+
+            /////////////////////////////////////////////////
+
+
+            // Eをクリックするとquestion6とその選択肢を表示する
+            //【question6】歴史は？（Ｋボタン）好き（Ｌボタン）嫌い
+            $("#E_btn").on("click", function () {
+                $("#question3").hide();
+                $("#E_btn").hide();
+                $("#F_btn").hide();
+                $("#question6").show();
+                $("#question6_choices").show();
+            });
+
+            /////////////////////////////////////////////////
+
+            /*****************質問６の答え******************/
+
+            /////////////////////////////////////////////////
+
+            $("#K_btn").on("click", function () {
+                //kボタンを押したら６年生とでる
+                //kボタンを押したら「６年生」と結果が表示される
+                $("#result").text("６年生");
+                // Q6とkボタンとlボタンを非表示にする
+                $("#question6").hide();
+                $("#question6_choices").hide();
+                $("#K_btn").hide();
+                $("#K_btn_choices").hide();
+                $("#L_btn").hide();
+                $("#L_btn_choices").hide();
+                $("#result").html("<img src='img/schoolsix.jpg' width='400' height='400'><br>６年生");
+                //６年生の画像を出す//
+                //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schoolsix.jpg' width='600' height='400'></button><br>６年生</div>");
+                $("#result").html("<div><span style='color: red;'>あなたには６年生がピッタリかも！？</span><br><button><img src='img/schoolsix.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>")
+                // 写真をクリックしたら画像（高学年）がでてくる
+                $("#result").on("click", "button", function () {
+                    // 高学年の画像を表示する
+                    $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/high.png' width='800' height='450'></button><br></div>");
+                    // 高学年の画像をクリックしたら最後の画像が出てくる
+                    $("#result").on("click", "button", function () {
+                        // 最後の画像を表示する
+                        //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                        $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    });
+                });
+            });
+
+            $("#L_btn").on("click", function () {
+                //Lボタンを押したら５年生とでる
+                //Lボタンを押したら「５年生」と結果が表示される
+                $("#result").text("５年生");
+                // Q6とKボタンとLボタンを非表示にする
+                $("#question6").hide();
+                $("#question6_choices").hide();
+                $("#K_btn").hide();
+                $("#K_btn_choices").hide();
+                $("#L_btn").hide();
+                $("#L_btn_choices").hide();
+                $("#result").html("<img src='img/schoolfive.jpg' width='400' height='400'><br>５年生");
+                //５年生の画像を出す//
+                //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schoolfive.jpg' width='600' height='400'></button><br>５年生</div>");
+                $("#result").html("<div><span style='color: red;'>あなたには５年生がピッタリかも！？</span><br><button><img src='img/schoolfive.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>")
+                // 写真をクリックしたら画像（高学年）がでてくる
+                $("#result").on("click", "button", function () {
+                    // 高学年の画像を表示する
+                    $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/high.png' width='800' height='450'></button><br></div>");
+                    // 高学年の画像をクリックしたら最後の画像が出てくる
+                    $("#result").on("click", "button", function () {
+                        // 最後の画像を表示する
+                        //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                        $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    });
+                });
+            });
+
+            /////////////////////////////////////////////////
+
+            /********************質問７********************/
+
+            /////////////////////////////////////////////////
+
+
+            // Fをクリックするとquestion7とその選択肢を表示する
+            //【question7】外国語は？（Ｇボタン）得意（Ｈボタン）不得意
+            $("#F_btn").on("click", function () {
+                $("#question3").hide();
+                $("#E_btn").hide();
+                $("#F_btn").hide();
+                $("#question7").show();
+                $("#question7_choices").show();
+            });
+
+            /////////////////////////////////////////////////
+
+            /*****************質問7の答え******************/
+
+            /////////////////////////////////////////////////
+
+            $("#M_btn").on("click", function () {
+                //Mボタンを押したら４年生とでる
+                //Mボタンを押したら「４年生」と結果が表示される
+                $("#result").text("４年生");
+                // Q7とMボタンとNボタンを非表示にする
+                $("#question7").hide();
+                $("#question7_choices").hide();
+                $("#M_btn").hide();
+                $("#M_btn_choices").hide();
+                $("#N_btn").hide();
+                $("#N_btn_choices").hide();
+                $("#result").html("<img src='img/schoolfour.jpg' width='400' height='400'><br>４年生");
+                //４年生の画像を出す//
+                //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schoolfour.jpg' width='600' height='400'></button><br>４年生</div>");
+                $("#result").html("<div><span style='color: red;'>あなたには４年生がピッタリかも！？</span><br><button><img src='img/schoolfour.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>");
+                // 写真をクリックしたら画像（中学年）がでてくる
+                $("#result").on("click", "button", function () {
+                    // 中学年の画像を表示する
+                    $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/medium.png' width='800' height='450'></button><br></div>");
+                    // 中学年の画像をクリックしたら最後の画像が出てくる
+                    $("#result").on("click", "button", function () {
+                        // 最後の画像を表示する
+                        //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                        $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    });
+                });
+            });
+
+            $("#N_btn").on("click", function () {
+                //Nボタンを押したら３年生とでる
+                //Nボタンを押したら「３年生」と結果が表示される
+                $("#result").text("３年生");
+                // Q7とMボタンとNボタンを非表示にする
+                $("#question7").hide();
+                $("#question7_choices").hide();
+                $("#M_btn").hide();
+                $("#M_btn_choices").hide();
+                $("#N_btn").hide();
+                $("#N_btn_choices").hide();
+                $("#result").html("<img src='img/schoolthree.jpg' width='400' height='400'><br>３年生");
+                //３年生の画像を出す//
+                //$("#result").html("<div><span>写真をクリックして</span><br><button><img src='img/schoolthree.jpg' width='600' height='400'></button><br>３年生</div>");
+                $("#result").html("<div><span style='color: red;'>あなたには３年生がピッタリかも！？</span><br><button><img src='img/schoolthree.jpg' width='600' height='400'></button><br>写真をクリックして！</span></div>");
+                // 写真をクリックしたら画像（中学年）がでてくる
+                $("#result").on("click", "button", function () {
+                    // 中学年の画像を表示する
+                    $("#result").html("<div><span>最後のクリック！</span><br><button><img src='img/medium.png' width='800' height='450'></button><br></div>");
+                    // 中学年の画像をクリックしたら最後の画像が出てくる
+                    $("#result").on("click", "button", function () {
+                        // 最後の画像を表示する
+                        //$("#result").html("<div><span>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                        $("#result").html("<div><span style='color: red;'>答えてくれてありがとう♡</span><br><button><img src='img/neko.png' width='800' height='450'></button><br></div>");
+                    });
+                });
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

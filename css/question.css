@@ -1,0 +1,164 @@
+/* スタイルを定義 */
+body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 32px;
+}
+
+header {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    background-color: #fff1ab;
+    border-bottom: 1px solid #fff1ab;
+    text-align: center;
+    height: 80px;
+}
+
+main {
+    padding-top: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+#A_btn img {
+    width: 420px;
+    height: 300px;
+}
+
+#B_btn img {
+    width: 400px;
+    height: 300px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    /* 水平方向の中央寄せ */
+    align-items: center;
+    /* 垂直方向の中央寄せ */
+}
+
+ul {
+    padding: 0;
+    display: table;
+    /* 定義 */
+    table-layout: fixed;
+    width: 100%;
+}
+
+li {
+    text-align: center;
+    list-style-type: none;
+    background-color: #FFF;
+    display: table-cell;
+    /* 定義 */
+    cursor: pointer;
+}
+
+button {
+    text-align: center;
+    list-style-type: none;
+    border: 1px solid #666;
+    background-color: #FFF;
+    display: table-cell;
+    /* 定義 */
+    cursor: pointer;
+}
+
+#C_btn img {
+    width: 450px;
+    height: 350px;
+}
+
+#D_btn img {
+    width: 450px;
+    height: 350px;
+}
+
+#E_btn img {
+    width: 420px;
+    height: 350px;
+}
+
+#F_btn img {
+    width: 430px;
+    height: 350px;
+}
+
+#G_btn img {
+    width: 270px;
+    height: 350px;
+}
+
+#H_btn img {
+    width: 400px;
+    height: 350px;
+}
+
+#I_btn img {
+    width: 400px;
+    height: 350px;
+}
+
+#J_btn img {
+    width: 400px;
+    height: 350px;
+}
+
+#K_btn img {
+    width: 390px;
+    height: 350px;
+}
+
+#L_btn img {
+    width: 390px;
+    height: 350px;
+}
+
+#M_btn img {
+    width: 460px;
+    height: 360px;
+}
+
+#N_btn img {
+    width: 390px;
+    height: 360px;
+}
+
+li:hover {
+    background: #0066CC;
+    color: #fff;
+}
+
+footer {
+    background-color: #fff1ab;
+    border-bottom: 1px solid #fff1ab;
+    text-align: center;
+    padding-bottom: 3%;
+    height: 50px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+#result {
+    font-size: 40px;
+    /* テキストのサイズを48pxに設定 */
+    text-align: center;
+    /* テキストを中央に配置 */
+}
